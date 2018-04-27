@@ -16,7 +16,29 @@ const option = document.querySelector('#option')
 // selected option e.g. greater than
 let selected = option.options[option.selectedIndex].value
 
-console.log(first, second, selected)
+// ruleset
+const rules = {
+  rules: {
+    id: 'price',
+    operator: 'less',
+    value: first
+  }
+}
+
+const values = [100, 30, 5, 2, 350, 1]
+const compared = []
+
+function addValue() {
+  first = document.querySelector('#first').value
+  for (let i = 0; i < values.length; i++) {
+    if (compareLesser(first, values[i])) {
+      compared.push(values[i])
+    }
+  }
+  console.log(compared)
+}
+
+addValue();
 
 button.addEventListener('click', function() {
   first = document.querySelector('#first').value
@@ -42,6 +64,8 @@ function compareGreater(x, y) {
   if (x > y) {
     check.textContent = 'greater'
     return true
+  } else if (x == y) {
+    check.textContent = 'Invalid: ' + x + ' is equal to ' + y
   } else {
     check.textContent = 'Invalid: ' + x + ' is less than ' + y
     return false
@@ -52,6 +76,9 @@ function compareLesser(x, y) {
   if (x < y) {
     check.textContent = 'lesser'
     return true
+  } else if (x == y) {
+    check.textContent = 'Invalid: ' + x + ' is equal to ' + y
+    return false
   } else {
     check.textContent = 'Invalid: ' + x + ' is greater than ' + y
     return false
@@ -62,6 +89,9 @@ function compareEquality(x, y) {
   if (x == y) {
     check.textContent = 'equal'
     return true
+  } else if (x == y) {
+    check.textContent = 'Invalid: ' + x + ' is equal to ' + y
+    return false
   } else {
     check.textContent = 'Invalid: ' + x + ' is not equal to ' + y
     return false
