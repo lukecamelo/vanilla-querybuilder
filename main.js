@@ -38,7 +38,7 @@ function addValue() {
   console.log(compared)
 }
 
-addValue();
+addValue()
 
 button.addEventListener('click', function() {
   first = document.querySelector('#first').value
@@ -60,40 +60,41 @@ function compare(x, y) {
 }
 
 // children functions of compare()
-function compareGreater(x, y) {
-  if (x > y) {
-    check.textContent = 'greater'
-    return true
-  } else if (x == y) {
-    check.textContent = 'Invalid: ' + x + ' is equal to ' + y
-  } else {
-    check.textContent = 'Invalid: ' + x + ' is less than ' + y
-    return false
-  }
-}
 
-function compareLesser(x, y) {
-  if (x < y) {
-    check.textContent = 'lesser'
-    return true
-  } else if (x == y) {
-    check.textContent = 'Invalid: ' + x + ' is equal to ' + y
-    return false
-  } else {
-    check.textContent = 'Invalid: ' + x + ' is greater than ' + y
-    return false
-  }
-}
-
-function compareEquality(x, y) {
-  if (x == y) {
-    check.textContent = 'equal'
-    return true
-  } else if (x == y) {
-    check.textContent = 'Invalid: ' + x + ' is equal to ' + y
-    return false
-  } else {
-    check.textContent = 'Invalid: ' + x + ' is not equal to ' + y
-    return false
+const comparison = {
+  isGreaterThan: (x, y) => {
+    if (x > y) {
+      check.textContent = 'greater'
+      return true
+    } else if (x == y) {
+      check.textContent = 'Invalid: ' + x + ' is equal to ' + y
+    } else {
+      check.textContent = 'Invalid: ' + x + ' is less than ' + y
+      return false
+    }
+  },
+  isLessThan: (x, y) => {
+    if (x < y) {
+      check.textContent = 'lesser'
+      return true
+    } else if (x == y) {
+      check.textContent = 'Invalid: ' + x + ' is equal to ' + y
+      return false
+    } else {
+      check.textContent = 'Invalid: ' + x + ' is greater than ' + y
+      return false
+    }
+  },
+  isEqualTo: (x, y) => {
+    if (x == y) {
+      check.textContent = 'equal'
+      return true
+    } else if (x == y) {
+      check.textContent = 'Invalid: ' + x + ' is equal to ' + y
+      return false
+    } else {
+      check.textContent = 'Invalid: ' + x + ' is not equal to ' + y
+      return false
+    }
   }
 }
