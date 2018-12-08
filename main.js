@@ -25,42 +25,7 @@ const rules = {
   }
 }
 
-const values = [100, 30, 5, 2, 350, 1]
-const compared = []
-
-function addValue() {
-  first = document.querySelector('#first').value
-  for (let i = 0; i < values.length; i++) {
-    if (compareLesser(first, values[i])) {
-      compared.push(values[i])
-    }
-  }
-  console.log(compared)
-}
-
-addValue()
-
-button.addEventListener('click', function() {
-  first = document.querySelector('#first').value
-  second = document.querySelector('#second').value
-  selected = option.options[option.selectedIndex].value
-  compare(first, second)
-  console.log(selected)
-})
-
-// main function for comparison
-function compare(x, y) {
-  if (selected == 'greater') {
-    compareGreater(x, y)
-  } else if (selected == 'less') {
-    compareLesser(x, y)
-  } else if (selected == 'equal') {
-    compareEquality(x, y)
-  }
-}
-
-// children functions of compare()
-
+// Holds basic comparison methods
 const comparison = {
   isGreaterThan: (x, y) => {
     if (x > y) {
@@ -68,6 +33,7 @@ const comparison = {
       return true
     } else if (x == y) {
       check.textContent = 'Invalid: ' + x + ' is equal to ' + y
+      return false
     } else {
       check.textContent = 'Invalid: ' + x + ' is less than ' + y
       return false
@@ -77,7 +43,7 @@ const comparison = {
     if (x < y) {
       check.textContent = 'lesser'
       return true
-    } else if (x == y) {
+    } else if (x === y) {
       check.textContent = 'Invalid: ' + x + ' is equal to ' + y
       return false
     } else {
@@ -96,5 +62,39 @@ const comparison = {
       check.textContent = 'Invalid: ' + x + ' is not equal to ' + y
       return false
     }
+  }
+}
+
+const values = [100, 30, 5, 2, 350, 1]
+const compared = []
+
+function addValue() {
+  first = document.querySelector('#first').value
+  for (let i = 0; i < values.length; i++) {
+    if (comparison.isLessThan(first, values[i])) {
+      compared.push(values[i])
+    }
+  }
+  console.log('compared: ', compared)
+}
+
+addValue()
+
+button.addEventListener('click', function() {
+  first = document.querySelector('#first').value
+  second = document.querySelector('#second').value
+  selected = option.options[option.selectedIndex].value
+  compare(first, second)
+  console.log('selected: ', selected)
+})
+
+// main function for comparison
+function compare(x, y) {
+  if (selected == 'greater') {
+    comparison.isGreaterThan(x, y)
+  } else if (selected == 'less') {
+    comparison.isLessThan(x, y)
+  } else if (selected == 'equal') {
+    comparison.isEqualTo(x, y)
   }
 }
